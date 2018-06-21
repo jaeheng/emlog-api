@@ -7,7 +7,7 @@ module.exports = {
   themeConfig: {
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Github', link: 'http://blog.zhangziheng.com' },
+      { text: 'Github', link: 'https://github.com/jaeheng/emlog-api' },
     ],
     sidebar: 'auto'
   }
