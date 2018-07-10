@@ -51,8 +51,9 @@
 ## 获取文章/页面详情
 
 - 请求方式: GET
-- 请求地址: `/article/{gid}`
-- 请求参数: - 
+- 请求地址: `/articleInfo`
+- 请求参数:
+	- gid = 1 文章id
 - 响应数据:
 ```js
 {
@@ -62,12 +63,14 @@
 		gid: 1, // 文章id
 		title: '', // 文章标题
 		date: 1527669094, // 发布时间，unix时间戳
-		excerpt: '', // 描述
 		content: '', // 内容
 		sortid: 1, // 分类id
 		sortname: 'xx', // 分类名称
 		views: 100, // 浏览数
 		comnum: 100, // 评论数
+		author: 1, // 作者id
+		nickname: '', // 作者昵称
+		allow_remark: 'y', // 是否允许评论
 		tags: [
 			{
 				tid: 1,
@@ -116,7 +119,7 @@
 ## 发表评论
 
 - 请求方式: POST
-- 请求地址: `/comments/add`
+- 请求地址: `/addComments`
 - 请求参数:
 	- gid 文章ID
 	- poster 评论者昵称
@@ -163,8 +166,8 @@
 
 - 请求方式: GET
 - 请求地址: `/newComments`
-- 请求参数:
-	- size 获取几条数据
+- 请求参数: -
+- 说明: 条数可在后台侧边栏设置：最新评论
 - 响应数据:
 ```js
 {
@@ -173,9 +176,10 @@
 	data:  [
 		{
 			cid: 1, // 评论ID
+			gid: 1,
 			date: 1527138590, // 评论时间
-			poster: 'admin', // 评论者昵称
-			comment: '评论内容' // 评论内容
+			name: 'admin', // 评论者昵称
+			content: '评论内容' // 评论内容
 		}
 	]
 }
@@ -187,7 +191,6 @@
 - 请求地址: `/twitter`
 - 请求参数:
 	- page 页码
-	- perpage 每页几条
 - 响应数据:
 ```js
 {
@@ -202,8 +205,9 @@
 				img: '', // 微语包含的图片地址
 				author: 1, // 微语作者ID
 				nickname: '', // 微语作者昵称
-				date: 1331025271, // 发布时间
-				replaynum: 5 // 几条回复
+				date: '2013-04-04 10:58', // 发布时间
+				replynum: 5, // 几条回复
+				t: '' // 替换表情处理过的内容
 			}
 		]
 	}
@@ -213,7 +217,7 @@
 ## 获取微语回复
 
 - 请求方式: GET
-- 请求地址: `/reply`
+- 请求地址: `/replyTwitter`
 - 请求参数:
 	- tid 微语ID
 - 响应数据:
@@ -226,7 +230,7 @@
 			id: 1, // 回复ID
 			content: '', // 回复内容
 			name: '', // 回复者昵称
-			date: 1331025271 // 回复时间
+			date: '2018-06-21 16:02' // 回复时间
 		}
 	]
 }
@@ -235,7 +239,7 @@
 ## 获取分类列表
 
 - 请求方式: GET
-- 请求地址: `/sort`
+- 请求地址: `/sorts`
 - 请求参数: - 
 - 响应数据:
 ```js
@@ -249,6 +253,9 @@
 			alias: '', // 分类别名
 			description: '', // 描述
 			template: '', // 分类模版
+			lognum: 15, // 包含几篇文章
+			taxis: 5, // 排序序号
+			pid: 0, // 父类id
 			children: [ // 子分类
 				{
 					sid: 1, // 分类ID
@@ -256,7 +263,9 @@
 					alias: '', // 分类别名
 					description: '', // 描述
 					template: '', // 分类模版
-					children: []
+					lognum: 15, // 包含几篇文章
+					taxis: 5, // 排序序号
+					pid: 0 // 父类id
 				}
 			]
 		}
