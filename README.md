@@ -4,18 +4,27 @@
 
 有些Emlog模板的制作需要用到Ajax去异步调用数据，此时免不了要去写一些接口，模板制作的时候去写接口调用，无疑增加了开发者的工作量。于是我就想先规范一些Emlog的API接口的调用方式，然后制作一款API接口插件，这样可以减少模板开发者的技术负担，专注于界面的设计。
 
+## Download
+
+API文件v0.1 [download](./api.zip)
+
 ## 使用方式
 ```
-1. 安装并启用API插件（正在开发中）
-2. Ajax访问 BLOG_URL?plugin=api&route=请求地址 即可
-3. 拼接地址大概如： http://blog.zhangziheng.com/?plugin=api&route=/article%3Fsid=1%26page=2
-4. 其中%3F是%， %26是&
+1. 将API文件解压放入网站根目录
+2. Ajax访问 `BLOG_URL + 'api.php?route=请求地址&请求参数` 即可
+3. 拼接地址大概如： https://blog.zhangziheng.com/api.php?route=article&sid=1
 ```
+
+## TODO
+
+- 回复碎语
+- 登录
+- 注册
 
 ## 获取文章列表
 
 - 请求方式: GET
-- 请求地址: `/article`
+- 请求地址: `article`
 - 请求参数:
 	- sid 分类ID 可选，无sid则获取所有分类最新的文章
 	- page 页码
@@ -51,7 +60,7 @@
 ## 获取文章/页面详情
 
 - 请求方式: GET
-- 请求地址: `/articleInfo`
+- 请求地址: `articleInfo`
 - 请求参数:
 	- gid = 1 文章id
 - 响应数据:
@@ -84,7 +93,7 @@
 ## 获取某文章/页面关联的评论列表
 
 - 请求方式: GET
-- 请求地址: `/comments`
+- 请求地址: `comments`
 - 请求参数:
 	- gid 文章ID
 	- page 评论页码
@@ -119,7 +128,7 @@
 ## 发表评论
 
 - 请求方式: POST
-- 请求地址: `/addComments`
+- 请求地址: `addComments`
 - 请求参数:
 	- gid 文章ID
 	- poster 评论者昵称
@@ -165,7 +174,7 @@
 > 从所有评论离获取几条最新的
 
 - 请求方式: GET
-- 请求地址: `/newComments`
+- 请求地址: `newComments`
 - 请求参数: -
 - 说明: 条数可在后台侧边栏设置：最新评论
 - 响应数据:
@@ -188,7 +197,7 @@
 ## 获取最新微语
 
 - 请求方式: GET
-- 请求地址: `/twitter`
+- 请求地址: `twitter`
 - 请求参数:
 	- page 页码
 - 响应数据:
@@ -217,7 +226,7 @@
 ## 获取微语回复
 
 - 请求方式: GET
-- 请求地址: `/replyTwitter`
+- 请求地址: `replyTwitter`
 - 请求参数:
 	- tid 微语ID
 - 响应数据:
@@ -239,7 +248,7 @@
 ## 获取分类列表
 
 - 请求方式: GET
-- 请求地址: `/sorts`
+- 请求地址: `sorts`
 - 请求参数: - 
 - 响应数据:
 ```js
@@ -276,7 +285,7 @@
 ## 获取文章附件
 
 - 请求方式: GET
-- 请求地址: `/attachment`
+- 请求地址: `attachment`
 - 请求参数:
 	- blogid 文章ID
 	- thumb 是否获取缩略图 1 获取 0 不获取
@@ -305,7 +314,7 @@
 > 仅输出部分公开的配置
 
 - 请求方式: GET
-- 请求地址: `/options`
+- 请求地址: `options`
 - 请求参数: - 
 - 响应数据:
 ```js
