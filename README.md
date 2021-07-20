@@ -6,20 +6,14 @@
 
 ## Download
 
-API文件v0.1 [download](./api.zip)
+克隆或下载本项目，其中wxa文件夹就是小程序插件
 
 ## 使用方式
 ```
-1. 将API文件解压放入网站根目录
-2. Ajax访问 `BLOG_URL + 'api.php?route=请求地址&请求参数` 即可
-3. 拼接地址大概如： https://blog.zhangziheng.com/api.php?route=article&sid=1
+1. 将小程序插件目录放入网站的插件目录/content/plugins
+2. Ajax访问 `BLOG_URL + 'content/plugins/wxa/api.php?route=请求地址&请求参数` 即可
+3. 拼接地址大概如： https://blog.zhangziheng.com/content/plugins/wxa/api.php?route=article&sid=1
 ```
-
-## TODO
-
-- 回复碎语
-- 登录
-- 注册
 
 ## 获取文章列表
 
@@ -30,6 +24,7 @@ API文件v0.1 [download](./api.zip)
 	- page 页码
 	- perpage 每页条数 默认从emlog配置中取
 	- top 是否仅获取首页置顶文章
+	- keyword 关键字
 - 响应数据:
 ```js
 {
